@@ -55,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} min-h-screen selection:bg-primary selection:text-white font-(--font-poppins)`}>
+      <body className={`${poppins.variable} min-h-screen selection:bg-primary selection:text-white font-(--font-poppins)`} suppressHydrationWarning>
         <NextTopLoader
           color="#3b82f6"
           height={3}

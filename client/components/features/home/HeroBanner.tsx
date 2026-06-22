@@ -238,12 +238,12 @@ export default function HeroBanner({ data }: { data?: HeroData }) {
       </div>
 
       {/* Vertical Social Links */}
-      <div ref={socialRef} className="absolute left-12 top-[35%] -translate-x-1/2 max-xl:hidden z-20">
+      <div ref={socialRef} className="absolute left-12 top-[25%] -translate-x-1/2 max-xl:hidden z-20">
         <ul className="mb-0 flex items-center [writing-mode:vertical-rl] relative">
           {socialLinks.map((social) => (
             <li key={social.label} className="text-center mx-5">
               <a
-                className="text-white/40 text-[13px] font-black uppercase tracking-[0.3em] relative duration-500 flex items-center flex-col group hover:text-primary transition-all"
+                className="text-white text-[13px]  font-black uppercase tracking-[0.3em] relative duration-500 flex items-center flex-col group hover:text-primary transition-all"
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
