@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
-    "postbuild": "bun -e \"const{cpSync,mkdirSync}=require('fs');mkdirSync('.next/standalone/public/uploads',{recursive:true});try{cpSync('public','.next/standalone/public',{recursive:true})}catch{}\"",
+    "postbuild": "node -e \"const{cpSync,mkdirSync}=require('fs');mkdirSync('.next/standalone/public/uploads',{recursive:true});try{cpSync('public','.next/standalone/public',{recursive:true})}catch{}\"",
     "start": "node .next/standalone/server.js",
     "start:next": "next start",
     "lint": "eslint",

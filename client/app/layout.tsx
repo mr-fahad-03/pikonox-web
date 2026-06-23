@@ -57,10 +57,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} min-h-screen selection:bg-primary selection:text-white font-(--font-poppins)`} suppressHydrationWarning>
         <NextTopLoader
-          color="#3b82f6"
+          color="#1683F8"
           height={3}
           showSpinner={false}
-          shadow="0 0 10px #3b82f6, 0 0 5px #3b82f6"
+          shadow="0 0 10px #1683F8, 0 0 5px #1683F8"
           easing="ease"
           speed={200}
         />
@@ -75,7 +75,7 @@ export default function RootLayout({
               fontSize: "14px",
               fontWeight: "500",
             },
-            success: { iconTheme: { primary: "#22c55e", secondary: "#fff" } },
+            success: { iconTheme: { primary: "#2EA043", secondary: "#fff" } },
             error: { iconTheme: { primary: "#ef4444", secondary: "#fff" } },
           }}
         />

@@ -59,7 +59,7 @@ export default function ConsultationSection({ data }: { data?: ContactData }) {
     <section className="relative py-24 bg-white overflow-hidden" id="contact">
       {/* Decorative gradients */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-green-100/30 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
       <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -221,10 +221,10 @@ export default function ConsultationSection({ data }: { data?: ContactData }) {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="group flex w-full md:w-auto items-center justify-center gap-2 bg-primary hover:bg-blue-600 text-white font-semibold text-[15px] px-7 py-3 rounded-full transition-all duration-300 shadow-md shadow-primary/30 hover:shadow-primary/50"
+                    className="group flex w-full md:w-auto items-center justify-center gap-2 bg-primary hover:bg-green-600 text-white font-semibold text-[15px] px-7 py-3 rounded-full transition-all duration-300 shadow-md shadow-primary/30 hover:shadow-green-500/45"
                   >
                     <span>Send Inquiry</span>
-                    <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-colors">
+                    <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-green-600 transition-colors">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transform group-hover:translate-x-0.5 transition-transform">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -236,7 +236,7 @@ export default function ConsultationSection({ data }: { data?: ContactData }) {
             </div>
             
             {/* Soft shadow accent below form */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-primary/10 via-transparent to-blue-200/20 rounded-[2rem] -z-10 blur-xl"></div>
+            <div className="absolute -inset-1 bg-gradient-to-tr from-primary/10 via-transparent to-green-200/20 rounded-[2rem] -z-10 blur-xl"></div>
           </div>
           
         </div>

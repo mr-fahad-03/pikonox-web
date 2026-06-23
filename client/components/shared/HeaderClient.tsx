@@ -133,7 +133,7 @@ export default function HeaderClient({ data }: { data?: HeaderData }) {
             <span className="text-white transition-colors group-hover:text-gray-200">
               {header.brand.suffix}
             </span>
-            <span className="mb-1 ml-0.5 h-2 w-2 rounded-full bg-blue-500" />
+            <span className="mb-1 ml-0.5 h-2 w-2 rounded-full bg-green-500" />
           </Link>
 
           <nav className="hidden xl:block">
@@ -240,7 +240,7 @@ export default function HeaderClient({ data }: { data?: HeaderData }) {
             >
               <span className="text-primary">{header.brand.prefix}</span>
               <span className="text-secondary">{header.brand.suffix}</span>
-              <span className="mb-0.5 h-1.5 w-1.5 rounded-full bg-blue-500" />
+              <span className="mb-0.5 h-1.5 w-1.5 rounded-full bg-green-500" />
             </Link>
             <button
               onClick={closeMobileMenu}

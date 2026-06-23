@@ -8,9 +8,13 @@
   --font-red-hat: var(--font-poppins), system-ui, sans-serif;
   --font-roboto: var(--font-poppins), system-ui, sans-serif;
   /* Primary Colors - Blue */
-  --primary: #3B82F6;
-  --primarylight: #60A5FA;
-  --primarydark: #1D4ED8;
+  --primary: #1683F8;
+  --primarylight: #52a3f9;
+  --primarydark: #0861c5;
+  /* Accent Colors - Green */
+  --green: #2EA043;
+  --greenlight: #60c973;
+  --greendark: #1a6c2a;
   /* Secondary Colors - Dark Navy */
   --secondary: #0F172A;
   /* Body */
@@ -45,10 +49,49 @@
   --color-bodytext: var(--bodytext);
   --color-card: var(--card);
   --color-title: var(--title);
+  --color-green: var(--green);
+  --color-greenlight: var(--greenlight);
+  --color-greendark: var(--greendark);
   --color-lightgreen: #64748B;
   --color-bordergray: #E2E8F0;
   --color-bordergraylight: #F1F5F9;
   --color-bglight: #F8FAFC;
+
+  /* Redefine Tailwind blue palette */
+  --color-blue-50: color-mix(in srgb, var(--primary) 5%, white);
+  --color-blue-100: color-mix(in srgb, var(--primary) 10%, white);
+  --color-blue-200: color-mix(in srgb, var(--primary) 20%, white);
+  --color-blue-300: color-mix(in srgb, var(--primary) 30%, white);
+  --color-blue-400: color-mix(in srgb, var(--primary) 60%, white);
+  --color-blue-500: var(--primary);
+  --color-blue-600: var(--primarydark);
+  --color-blue-700: color-mix(in srgb, var(--primarydark) 90%, black);
+  --color-blue-800: color-mix(in srgb, var(--primarydark) 80%, black);
+  --color-blue-900: color-mix(in srgb, var(--primarydark) 60%, black);
+
+  /* Redefine Tailwind green palette */
+  --color-green-50: color-mix(in srgb, var(--green) 5%, white);
+  --color-green-100: color-mix(in srgb, var(--green) 10%, white);
+  --color-green-200: color-mix(in srgb, var(--green) 20%, white);
+  --color-green-300: color-mix(in srgb, var(--green) 30%, white);
+  --color-green-400: color-mix(in srgb, var(--green) 60%, white);
+  --color-green-500: var(--green);
+  --color-green-600: var(--greendark);
+  --color-green-700: color-mix(in srgb, var(--greendark) 90%, black);
+  --color-green-800: color-mix(in srgb, var(--greendark) 80%, black);
+  --color-green-900: color-mix(in srgb, var(--greendark) 60%, black);
+
+  /* Map emerald to custom green palette */
+  --color-emerald-50: var(--color-green-50);
+  --color-emerald-100: var(--color-green-100);
+  --color-emerald-200: var(--color-green-200);
+  --color-emerald-300: var(--color-green-300);
+  --color-emerald-400: var(--color-green-400);
+  --color-emerald-500: var(--color-green-500);
+  --color-emerald-600: var(--color-green-600);
+  --color-emerald-700: var(--color-green-700);
+  --color-emerald-800: var(--color-green-800);
+  --color-emerald-900: var(--color-green-900);
 
   /* Fonts */
   --font-sans: var(--font-poppins), system-ui, sans-serif;
@@ -127,8 +170,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes ripple-1 {
-  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-  100% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(22, 131, 248, 0.4); }
+  100% { box-shadow: 0 0 0 12px rgba(22, 131, 248, 0); }
 }
 
 @keyframes bounceInUp {

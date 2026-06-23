@@ -83,8 +83,8 @@ function StepCard({ data }: { data: DevProcessStep }) {
         <Icon className="w-10 h-10 text-primary stroke-[1.5]" />
       </div>
       <div className="flex items-center gap-3 mb-4">
-        <span className="bg-[#5C94C4] text-white text-[13px] font-semibold px-4 py-1.5 rounded-full">{data.step}</span>
-        <span className="text-[#5C94C4] text-[15px] font-medium">{data.subtitle}</span>
+        <span className="bg-green-600 text-white text-[13px] font-semibold px-4 py-1.5 rounded-full">{data.step}</span>
+        <span className="text-green-600 text-[15px] font-medium">{data.subtitle}</span>
       </div>
       <h3 className="text-[28px] lg:text-[32px] md:text-[30px] font-semibold text-secondary mb-5 leading-tight">{data.title}</h3>
       <ul className="space-y-3">
@@ -125,7 +125,7 @@ export default function DevelopmentProcessSection({ data }: { data?: DevProcessD
 
             <Link
               href={ctaHref}
-              className="inline-flex flex-shrink-0 items-center justify-center px-7 py-3 text-[15px] bg-[#F5A524] hover:bg-[#E09015] text-black font-bold rounded-full transition-colors duration-300 shadow-md mb-12"
+              className="inline-flex flex-shrink-0 items-center justify-center px-7 py-3 text-[15px] bg-green-600 hover:bg-green-700 text-white font-bold rounded-full transition-colors duration-300 shadow-md mb-12"
             >
               {ctaLabel}
             </Link>

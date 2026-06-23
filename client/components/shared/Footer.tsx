@@ -92,7 +92,7 @@ export default async function Footer() {
                 <span className="pxl-button-text relative z-1 text-xl font-semibold">
                   {footer.cta.buttonLabel}
                 </span>
-                <span className="relative z-1 ml-20 inline-flex size-12 items-center justify-center overflow-hidden rounded-full bg-primary text-secondary">
+                <span className="relative z-1 ml-20 inline-flex size-12 items-center justify-center overflow-hidden rounded-full bg-green-500 text-secondary">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7 7H13V13" stroke="white" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M7 13L13 7" stroke="white" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
@@ -112,8 +112,8 @@ export default async function Footer() {
               <div className="rounded-t-[14px] bg-black px-2.5 py-3.5 xl:px-6">
                 <div className="flex items-center gap-1.5">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M16.6666 8.33317C16.6666 12.494 12.0508 16.8273 10.5008 18.1657C10.3564 18.2743 10.1806 18.333 9.99998 18.333C9.81931 18.333 9.64354 18.2743 9.49915 18.1657C7.94915 16.8273 3.33331 12.494 3.33331 8.33317C3.33331 6.56506 4.03569 4.86937 5.28593 3.61913C6.53618 2.36888 8.23187 1.6665 9.99998 1.6665C11.7681 1.6665 13.4638 2.36888 14.714 3.61913C15.9643 4.86937 16.6666 6.56506 16.6666 8.33317Z" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M10 10.8335C11.3807 10.8335 12.5 9.71421 12.5 8.3335C12.5 6.95278 11.3807 5.8335 10 5.8335C8.61929 5.8335 7.5 6.95278 7.5 8.3335C7.5 9.71421 8.61929 10.8335 10 10.8335Z" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16.6666 8.33317C16.6666 12.494 12.0508 16.8273 10.5008 18.1657C10.3564 18.2743 10.1806 18.333 9.99998 18.333C9.81931 18.333 9.64354 18.2743 9.49915 18.1657C7.94915 16.8273 3.33331 12.494 3.33331 8.33317C3.33331 6.56506 4.03569 4.86937 5.28593 3.61913C6.53618 2.36888 8.23187 1.6665 9.99998 1.6665C11.7681 1.6665 13.4638 2.36888 14.714 3.61913C15.9643 4.86937 16.6666 6.56506 16.6666 8.33317Z" stroke="#1683F8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M10 10.8335C11.3807 10.8335 12.5 9.71421 12.5 8.3335C12.5 6.95278 11.3807 5.8335 10 5.8335C8.61929 5.8335 7.5 6.95278 7.5 8.3335C7.5 9.71421 8.61929 10.8335 10 10.8335Z" stroke="#1683F8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   <span className="text-base font-semibold text-white">{primaryLocation}</span>
                 </div>
@@ -160,7 +160,7 @@ export default async function Footer() {
                 </div>
                 <Link
                   href={footer.contactCta.href || "/contact"}
-                  className="ml-10 inline-flex size-12 items-center justify-center overflow-hidden rounded-full bg-primary text-secondary transition-transform hover:scale-110"
+                  className="ml-10 inline-flex size-12 items-center justify-center overflow-hidden rounded-full bg-green-500 text-secondary transition-transform hover:scale-110"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M7 7H17V17" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>

@@ -23,7 +23,7 @@ interface WhatWeDoData {
 export default function WhatWeDoSection({ data }: { data?: WhatWeDoData }) {
   const items = data?.items?.length ? data.items : DEFAULT_ITEMS;
   const badge = data?.badge ?? "Our Capabilities";
-  const headingPrefix = data?.headingPrefix ?? "pikonox is a premium";
+  const headingPrefix = data?.headingPrefix ?? "PikoNox is a premium";
   const highlight1 = data?.highlight1 ?? "AI Transformation";
   const highlight2 = data?.highlight2 ?? "Digital Solutions";
   const headingSuffix = data?.headingSuffix ?? "agency.";
@@ -46,7 +46,7 @@ export default function WhatWeDoSection({ data }: { data?: WhatWeDoData }) {
           <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-black leading-[1.1] max-w-4xl tracking-tight">
             {headingPrefix}{" "}
             <span className="text-primary">{highlight1}</span> and{" "}
-            <span className="text-primary">{highlight2}</span> {headingSuffix}
+            <span className="text-green-500">{highlight2}</span> {headingSuffix}
           </h2>
         </div>
 
@@ -83,7 +83,7 @@ export default function WhatWeDoSection({ data }: { data?: WhatWeDoData }) {
                         </p>
                         <Link
                           href="/services"
-                          className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:gap-4 transition-all duration-300 border-b-2 border-primary pb-1"
+                          className="mt-8 inline-flex items-center gap-2 text-green-600 font-semibold hover:gap-4 transition-all duration-300 border-b-2 border-green-600 pb-1"
                         >
                           Explore Service
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

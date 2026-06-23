@@ -185,7 +185,7 @@ export default function HeroBanner({ data }: { data?: HeroData }) {
                             <span className="sm:px-6 px-3 text-xl font-semibold text-secondary z-1 relative group-hover:text-white transition-colors duration-500">
                               Free Consultation
                             </span>
-                            <span className="overflow-hidden bg-primary rounded-full size-[50px] inline-flex items-center justify-center z-1 relative">
+                            <span className="overflow-hidden bg-green-500 rounded-full size-[50px] inline-flex items-center justify-center z-1 relative">
                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M7 7H17V17" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M7 17L17 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -228,7 +228,7 @@ export default function HeroBanner({ data }: { data?: HeroData }) {
               {stats[0]?.label ?? "Overall Positive Customer Feedback"}
             </p>
           </div>
-          <div className="bg-primary/90 backdrop-blur-md py-5 px-10 sm:w-1/2 rounded-r-3xl border border-white/10 shadow-2xl">
+          <div className="bg-green-600/95 backdrop-blur-md py-5 px-10 sm:w-1/2 rounded-r-3xl border border-white/10 shadow-2xl">
             <div className="flex items-center">
               <span className="text-white font-bold xl:text-[50px] text-[40px] leading-none">
                 <span ref={yearsRef}>{stat0Val}</span>

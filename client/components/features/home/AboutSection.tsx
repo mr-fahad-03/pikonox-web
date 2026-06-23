@@ -23,7 +23,7 @@ const chartOptions: ApexCharts.ApexOptions = {
       columnWidth: "55%",
     },
   },
-  colors: ["#3B82F6", "#8b5cf6"],
+  colors: ["#1683F8", "#2EA043"],
   dataLabels: { enabled: false },
   xaxis: {
     labels: { show: false },
@@ -108,7 +108,7 @@ function AnimatedFeature({ feature, i }: { feature: string; i: number }) {
   return (
     <div ref={ref} className="sm:col-span-6 col-span-12">
       <div className="bg-white/80 backdrop-blur-md shadow-sm border border-gray-100 rounded-2xl p-4 flex items-center gap-3.5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-blue-100 group">
-        <CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0 group-hover:scale-110 transition-transform" />
+        <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0 group-hover:scale-110 transition-transform" />
         <span className="text-secondary font-semibold text-[15px]">{feature}</span>
       </div>
     </div>
@@ -128,7 +128,7 @@ export default function AboutSection({ data }: { data?: AboutSectionData | null 
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-3xl -translate-x-1/2 -z-10 pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-green-50/40 rounded-full blur-3xl -translate-x-1/2 -z-10 pointer-events-none"></div>
 
       <div className="container relative z-10">
         <div className="grid grid-cols-12 gap-12 lg:gap-16">
@@ -158,7 +158,7 @@ export default function AboutSection({ data }: { data?: AboutSectionData | null 
                         <span className="text-4xl font-extrabold text-white">%</span>
                       </div>
                     </div>
-                    <div className="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                    <div className="w-12 h-12 rounded-2xl bg-green-500 flex items-center justify-center shadow-[0_0_20px_rgba(46,160,67,0.4)]">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                         <polyline points="22 4 12 14.01 9 11.01" />
@@ -168,11 +168,11 @@ export default function AboutSection({ data }: { data?: AboutSectionData | null 
 
                   <div className="flex items-center mt-5 relative z-10">
                     <div className="flex items-center gap-2 mr-5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(22,131,248,0.8)]" />
                       <span className="text-white/70 text-[10px] font-bold uppercase tracking-widest">Efficiency</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(46,160,67,0.8)]" />
                       <span className="text-white/70 text-[10px] font-bold uppercase tracking-widest">Speed</span>
                     </div>
                     <div className="ml-auto">
@@ -208,7 +208,7 @@ export default function AboutSection({ data }: { data?: AboutSectionData | null 
                       ))}
                     </div>
                     <div className="flex flex-col ml-1">
-                      <div className="flex gap-0.5 text-blue-600 text-lg font-black">
+                      <div className="flex gap-0.5 text-green-600 text-lg font-black">
                         <span ref={membersRef}>{cfg.statMembers}</span>
                         <span>{cfg.teamIntroSuffix}</span>
                       </div>
@@ -222,7 +222,7 @@ export default function AboutSection({ data }: { data?: AboutSectionData | null 
                   className="inline-flex items-center gap-3 px-6 py-3 bg-[#F8F9FA] hover:bg-black text-secondary hover:text-white font-bold rounded-full transition-all duration-300 w-fit group border border-gray-100 hover:border-black"
                 >
                   {cfg.linkLabel}
-                  <div className="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
+                  <div className="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-0.5 transition-transform">
                       <path d="M5 12h14"></path>
                       <path d="m12 5 7 7-7 7"></path>

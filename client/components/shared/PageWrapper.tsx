@@ -102,7 +102,7 @@ export default function PageWrapper({ children }: { children: ReactNode }) {
             cx="26"
             cy="26"
             r="24"
-            stroke="#3B82F6"
+            stroke="#1683F8"
             strokeWidth="3"
             fill="none"
             strokeDasharray={circumference}
