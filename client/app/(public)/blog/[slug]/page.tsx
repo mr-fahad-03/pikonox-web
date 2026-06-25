@@ -2,12 +2,11 @@ export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Breadcrumb from "@/components/shared/Breadcrumb";
-import { Calendar, User, ArrowLeft } from "lucide-react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { ArrowRight, Calendar, User, Clock, Share2, Tag } from "lucide-react";
 import Link from "next/link";
 import { getBlogBySlug, getBlogPosts } from "@/actions/blog";
 import { buildEntityMetadata } from "@/lib/seo/buildMetadata";
+import { DEFAULT_BLOGS } from "@/lib/default-blogs";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -15,141 +14,203 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getBlogBySlug(slug);
-  return buildEntityMetadata(post, {
-    path: `/blog/${slug}`,
-    fallbackTitle: "Blog Post | PikoNox Blog",
-  });
+  let blog = await getBlogBySlug(slug);
+  
+  if (!blog) {
+    blog = DEFAULT_BLOGS.find((b) => b.slug === slug);
+  }
+
+  return buildEntityMetadata(
+    blog ? {
+      title: blog.metaTitle || blog.title,
+      description: blog.metaDescription || blog.excerpt,
+      excerptOrDescription: blog.metaDescription || blog.excerpt,
+      metaTitle: blog.metaTitle,
+      metaDescription: blog.metaDescription,
+      metaKeywords: blog.metaKeywords,
+      canonicalPath: blog.canonicalPath || `/blog/${slug}`,
+      ogImage: blog.ogImage,
+      image: blog.image,
+    } : null,
+    { path: `/blog/${slug}`, fallbackTitle: "Blog | PikoNox Insights" },
+  );
 }
 
-export default async function BlogPostDetailsPage({ params }: PageProps) {
+export default async function BlogDetailsPage({ params }: PageProps) {
   const { slug } = await params;
-  const [post, allPosts] = await Promise.all([
+  let [blog, allBlogs] = await Promise.all([
     getBlogBySlug(slug),
-    getBlogPosts(),
+    getBlogPosts()
   ]);
-  if (!post) notFound();
-  const relatedPosts = allPosts.filter((p: any) => p.slug !== slug).slice(0, 3);
+
+  if (!blog) {
+    blog = DEFAULT_BLOGS.find((b) => b.slug === slug);
+  }
+
+  if (!blog) notFound();
+
+  const activeAllBlogs = allBlogs.length > 0 ? allBlogs : DEFAULT_BLOGS;
+  const relatedBlogs = activeAllBlogs.filter((b: any) => b.slug !== slug).slice(0, 3);
+
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.pikonox.com/blog/${blog.slug}`
+    },
+    "headline": blog.title,
+    "description": blog.excerpt,
+    "image": blog.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80",  
+    "author": {
+      "@type": "Person",
+      "name": blog.author || "PikoNox Expert"
+    },  
+    "publisher": {
+      "@type": "Organization",
+      "name": "PikoNox",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.pikonox.com/logo.png"
+      }
+    },
+    "datePublished": blog.publishedAt || new Date().toISOString()
+  };
 
   return (
     <>
-      <Breadcrumb 
-        title={post.title} 
-        subtitle={`Written by ${post.author || "Admin"} on ${post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : ""}`}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="container max-w-4xl">
-          
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center gap-2 text-primary font-bold mb-12 hover:-translate-x-1 transition-transform"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Blog
+      <article className="pt-32 pb-24 bg-white">
+        {/* Article Header */}
+        <div className="container max-w-4xl mx-auto mb-16">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors mb-8 text-sm uppercase tracking-widest">
+            <ArrowRight className="w-4 h-4 rotate-180" /> Back to Insights
           </Link>
-
-          <div className="relative rounded-[40px] overflow-hidden shadow-2xl mb-16">
-            <img 
-              src={post.image || "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80"} 
-              alt={post.imageAlt?.trim() || post.title} 
-              className="w-full h-[500px] object-cover"
-            />
+          
+          <div className="mb-6 flex flex-wrap items-center gap-4">
+            <span className="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-black uppercase tracking-widest">
+              {blog.category || "Technology"}
+            </span>
+            <div className="flex items-center gap-2 text-secondary/50 text-sm font-bold">
+              <Clock className="w-4 h-4 text-primary" />
+              5 Min Read
+            </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-8 lg:gap-16">
+          <h1 className="text-4xl lg:text-6xl font-black text-secondary leading-tight mb-8">
+            {blog.title}
+          </h1>
+
+          <div className="flex items-center gap-6 py-6 border-y border-slate-100">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <User className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-secondary">{blog.author || "PikoNox Expert"}</p>
+                <p className="text-xs font-medium text-secondary/60">Software Engineer</p>
+              </div>
+            </div>
+            <div className="h-10 w-px bg-slate-100 hidden sm:block"></div>
+            <div className="flex items-center gap-2 text-secondary/70 text-sm font-bold">
+              <Calendar className="w-4 h-4 text-primary" />
+              {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : "Recently Published"}
+            </div>
+          </div>
+        </div>
+
+        {/* Article Hero Image */}
+        <div className="container max-w-5xl mx-auto mb-16">
+          <div className="relative rounded-[32px] overflow-hidden shadow-2xl aspect-[2/1] bg-slate-100">
+            <img 
+              src={blog.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"}
+              alt={blog.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Article Content & Sidebar Grid */}
+        <div className="container max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
             
-            {/* Sidebar Meta */}
-            <div className="col-span-12 lg:col-span-3">
-              <div className="lg:sticky lg:top-32 space-y-10">
-                <div>
-                  <h4 className="text-xs font-black text-primary uppercase tracking-widest mb-4">Published</h4>
-                  <p className="text-secondary font-black flex items-center gap-2 text-sm">
-                    <Calendar className="w-4 h-4" />
-                    {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : ""}
-                  </p>
+            {/* Main Content */}
+            <div className="lg:col-span-8">
+              <div className="prose prose-lg prose-blue max-w-none text-secondary/80 font-medium leading-relaxed
+                prose-h2:text-3xl prose-h2:font-black prose-h2:text-secondary prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:text-2xl prose-h3:font-bold prose-h3:text-secondary prose-h3:mt-10 prose-h3:mb-4
+                prose-p:mb-6 prose-strong:text-secondary prose-strong:font-black
+                prose-a:text-primary prose-a:font-bold prose-a:no-underline hover:prose-a:underline"
+                dangerouslySetInnerHTML={{ __html: blog.content || `<p>${blog.excerpt}</p>` }}
+              />
+
+              {/* Tags & Sharing */}
+              <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <Tag className="w-5 h-5 text-secondary/40" />
+                  {blog.metaKeywords?.split(',').slice(0, 3).map((keyword: string, idx: number) => (
+                    <span key={idx} className="px-4 py-2 rounded-lg bg-slate-50 border border-slate-100 text-secondary/70 text-sm font-bold hover:bg-white hover:border-primary/30 transition-colors cursor-pointer">
+                      {keyword.trim()}
+                    </span>
+                  ))}
                 </div>
                 
-                <div>
-                  <h4 className="text-xs font-black text-primary uppercase tracking-widest mb-4">Author</h4>
-                  <p className="text-secondary font-black flex items-center gap-2 text-sm">
-                    <User className="w-4 h-4" />
-                    {post.author || "Admin"}
-                  </p>
+                <button className="flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors group">
+                  <Share2 className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+                  Share Article
+                </button>
+              </div>
+            </div>
+
+            {/* Sticky Sidebar */}
+            <div className="lg:col-span-4">
+              <div className="sticky top-32 flex flex-col gap-8">
+                
+                {/* CTA Card */}
+                <div className="bg-secondary rounded-[32px] p-8 text-white relative overflow-hidden shadow-2xl">
+                  <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-primary/20 blur-2xl" />
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-black mb-4">Build Your Next Big Idea</h3>
+                    <p className="text-white/70 text-sm leading-relaxed mb-8 font-medium">
+                      Our expert engineering team is ready to transform your vision into a scalable, high-performance digital product.
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest hover:bg-white hover:text-secondary transition-colors"
+                    >
+                      Start a Project <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
 
-                <div>
-                  <h4 className="text-xs font-black text-primary uppercase tracking-widest mb-4">Share</h4>
-                  <div className="flex items-center gap-3">
-                    {[FaFacebookF, FaTwitter, FaLinkedinIn].map((Icon, idx) => (
-                      <button key={idx} className="size-10 rounded-full bg-gray-50 flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all shadow-sm">
-                        <Icon className="w-4 h-4" />
-                      </button>
+                {/* Related Articles */}
+                <div className="bg-slate-50 rounded-[32px] p-8 border border-slate-100">
+                  <h3 className="font-black text-secondary text-xl mb-6">Related Articles</h3>
+                  <div className="flex flex-col gap-6">
+                    {relatedBlogs.map((related: any) => (
+                      <Link href={`/blog/${related.slug}`} key={related.id} className="group flex gap-4 items-center">
+                        <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0">
+                          <img src={related.image} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-secondary group-hover:text-primary transition-colors line-clamp-2 leading-snug mb-2">
+                            {related.title}
+                          </h4>
+                          <p className="text-xs font-bold text-secondary/50 uppercase tracking-wider">
+                            {related.publishedAt ? new Date(related.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : ""}
+                          </p>
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Content Body */}
-            <div className="col-span-12 lg:col-span-9">
-              <div className="prose prose-lg max-w-none">
-                <p className="text-xl lg:text-2xl font-bold text-secondary mb-10 leading-relaxed italic border-l-4 border-primary pl-8 py-4 bg-blue-50/30 rounded-r-2xl">
-                  {post.excerpt}
-                </p>
-                
-                <div 
-                  className="text-lg text-secondary/80 font-medium leading-loose space-y-8 prose prose-blue max-w-none"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-              </div>
-
-              {/* Tags/Categories */}
-              <div className="mt-20 pt-10 border-t border-gray-100 flex flex-wrap items-center gap-4">
-                <span className="text-sm font-black text-secondary/40 uppercase tracking-widest mr-2">Tags:</span>
-                {["Technology", "Future", "AI", post.category || "General"].map((tag) => (
-                  <span key={tag} className="px-5 py-2.5 rounded-full bg-blue-50 text-primary text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all cursor-pointer">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
           </div>
         </div>
-      </section>
-
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="py-20 bg-gray-50">
-          <div className="container max-w-5xl">
-            <div className="flex items-center justify-between mb-12">
-              <h2 className="text-3xl font-black text-secondary">More Articles</h2>
-              <Link href="/blog" className="text-primary font-bold text-sm uppercase tracking-widest hover:translate-x-1 transition-transform flex items-center gap-2">
-                All Posts →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {relatedPosts.map((p: any) => (
-                <Link key={p.id} href={`/blog/${p.slug}`} className="group block">
-                  <div className="relative rounded-2xl overflow-hidden mb-4 aspect-video">
-                    <img
-                      src={p.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80"}
-                      alt={p.imageAlt?.trim() || p.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  <span className="text-xs font-black text-primary uppercase tracking-widest mb-2 block">{p.category}</span>
-                  <h3 className="font-black text-secondary group-hover:text-primary transition-colors line-clamp-2 leading-snug">
-                    {p.title}
-                  </h3>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      </article>
     </>
   );
 }
-
