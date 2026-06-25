@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import NextTopLoader from "nextjs-toploader";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import SplashScreen from "@/components/shared/SplashScreen";
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Script from "next/script";
@@ -74,6 +75,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${poppins.variable} min-h-screen selection:bg-primary selection:text-white font-(--font-poppins)`} suppressHydrationWarning>
+        <SplashScreen />
         <NextTopLoader
           color="#1683F8"
           height={3}

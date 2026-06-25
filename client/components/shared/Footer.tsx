@@ -122,7 +122,7 @@ export default async function Footer() {
                   width="40" 
                   height="30" 
                   className="mx-auto mb-2 rounded-sm" 
-                  src={`https://flagcdn.com/w80/${country.code}.png`} 
+                  src={`/flags/${country.code}.png`} 
                 />
                 <p className="text-white font-bold text-sm">{country.name}</p>
                 <p className="text-white/60 text-xs mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis px-1">{country.subtitle}</p>
