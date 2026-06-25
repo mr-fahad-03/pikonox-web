@@ -139,20 +139,24 @@ export default function HeroBanner({ data }: { data?: HeroData }) {
           }}
         >
           {slides.map((slide, idx) => (
-            <SwiperSlide key={idx} className="relative w-full h-full bg-transparent">
-              <div className="absolute inset-0 w-full h-full">
-                
-                {/* Local Video Background */}
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                  src={`/videos/${(idx % 4) + 1}.mp4`}
-                />
-                {/* Local Overlay to ensure text readability */}
-                <div className="absolute inset-0 bg-black/50" />
+            <SwiperSlide key={idx} className="relative w-full h-full bg-black">
+              {({ isActive, isNext, isPrev }) => (
+                <div className="absolute inset-0 w-full h-full">
+                  
+                  {/* Lazy Loaded Local Video Background */}
+                  {(isActive || isNext || isPrev || idx === 0) && (
+                    <video
+                      autoPlay={isActive || idx === 0}
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+                      style={{ opacity: isActive ? 1 : 0.5 }}
+                      src={`/videos/${(idx % 4) + 1}.mp4`}
+                    />
+                  )}
+                  {/* Local Overlay to ensure text readability */}
+                  <div className="absolute inset-0 bg-black/60" />
 
                 {/* Slide Content */}
                 <div className="container mx-auto relative z-10 h-full flex flex-col">
@@ -207,6 +211,7 @@ export default function HeroBanner({ data }: { data?: HeroData }) {
                   </div>
                 </div>
               </div>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
