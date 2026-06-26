@@ -11,7 +11,7 @@ const TEAM_MEMBERS = [
   {
     name: "Muhammad Salman",
     role: "Full Stack Developer",
-    image: "",
+    image: "/team/msalman.webp",
   },
   {
     name: "Muhammad Saleem",
@@ -21,12 +21,12 @@ const TEAM_MEMBERS = [
   {
     name: "Sikandar Hayat",
     role: "Sr. Mobile App Developer",
-    image: "https://plexify.dexignzone.com/tailwind/business-consulting/assets/images/team/4.png",
+    image: "/team/sikandarh.webp",
   },
   {
     name: "Muhammad Umair",
     role: "PHP,Laravel Developer",
-    image: "https://plexify.dexignzone.com/tailwind/business-consulting/assets/images/team/1.png",
+    image: "/team/umair.webp",
   },
   {
     name: "Bilal Shahid",
